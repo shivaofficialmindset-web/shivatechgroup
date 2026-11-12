@@ -444,9 +444,31 @@ svg { flex-shrink: 0; }
   border-top: 4px solid var(--yellow);
 }
 
-.footer-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 15px 24px; }
-.footer-inner p { display: flex; align-items: flex-start; gap: 8px; font-size: .92rem; color: #e3eeff; }
-.footer-inner p svg { color: var(--yellow); }
+.footer-inner { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px 32px; }
+
+.footer-disclaimer {
+  flex: 1 1 580px;
+  min-width: 0;
+  max-width: 760px;
+  padding: 14px 16px;
+  background: #ffffff12;
+  border: 1px solid #ffffff35;
+  border-radius: 10px;
+  color: #e3eeff;
+  font-size: .96rem;
+}
+
+.footer-disclaimer h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  color: var(--yellow);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.footer-disclaimer p + p { margin-top: 6px; }
 
 .mobile-bar {
   position: fixed;

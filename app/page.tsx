@@ -162,7 +162,18 @@ export default function Home() {
       <footer className="site-footer">
         <div className="shell footer-inner">
           <Brand />
-          <p><ShieldCheck size={20} aria-hidden="true" /> हम निजी सहायता सेवा हैं। हमारा UIDAI या किसी सरकारी विभाग से संबंध नहीं है।</p>
+          <section className="footer-disclaimer" aria-labelledby="disclaimer-title">
+            <h2 id="disclaimer-title">
+              <ShieldCheck size={20} aria-hidden="true" />
+              <span>अस्वीकरण <span lang="en">(Disclaimer)</span></span>
+            </h2>
+            <p>
+              <strong lang="en">SHIVATECH GROUP</strong> एक स्वतंत्र निजी परामर्श एवं डिजिटल सेवा सहायता केंद्र है, जिसका UIDAI या किसी सरकारी विभाग से कोई आधिकारिक संबंध नहीं है।
+            </p>
+            <p>
+              हम केवल वैध दस्तावेजों एवं सरकारी नियमों के अनुसार सहायता प्रदान करते हैं। हम किसी भी आवेदन की स्वीकृति या परिणाम की गारंटी नहीं देते।
+            </p>
+          </section>
         </div>
       </footer>
 
