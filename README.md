@@ -21,6 +21,8 @@ Set these environment variables in Vercel (and in `.env.local` for local use):
 
 After deployment, add the site's domain in Google Search Console, verify it, and submit `https://YOUR-DOMAIN/sitemap.xml`. Google controls indexing and rankings; verification and metadata do not guarantee either.
 
-The WhatsApp and telephone number is configured as `+91 8957631598`. The email address and Brevo form URL were not provided. Add the email and connect a Brevo-hosted form when those details are available; avoid collecting Aadhaar numbers or documents through a general enquiry form.
+- `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` — the Web3Forms access key associated with the email address where you want to receive enquiries. [Create an access key](https://web3forms.com/) using that email, then add the key to Vercel. Web3Forms emails form submissions to the address linked to the key; no separate destination email variable is needed. The key is intentionally public in the browser, not a secret. Do not put private credentials in `NEXT_PUBLIC_` variables.
 
-- `NEXT_PUBLIC_BREVO_FORM_URL` — the public URL of a Brevo-hosted form. When set, the form is embedded in the contact section. Until then, the enquiry form opens WhatsApp with the visitor's message; it does not save or submit data to Brevo.
+Redeploy after changing these variables, as Next.js embeds public environment variables at build time. For local development, add them to `.env.local` and restart the dev server. Test a real submission after configuring the key and check the destination inbox (and spam folder). Without the key, the contact form cannot send and asks visitors to call or use WhatsApp instead. Web3Forms may restrict some free subdomains; test the actual deployment domain. Its optional domain restriction is a paid feature.
+
+The WhatsApp and telephone number is configured as `+91 8957631598`. The form collects name, phone and message; visitors are asked not to share Aadhaar numbers or sensitive documents.
