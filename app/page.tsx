@@ -1,56 +1,177 @@
-import { ArrowDown, ArrowRight, ArrowUpRight, BadgeHelp, CalendarDays, Check, ChevronRight, CircleHelp, FileCheck2, FileText, Fingerprint, HeartHandshake, IdCard, Mail, MessageCircle, Phone, ShieldCheck, Sparkles } from "lucide-react";
-import EnquiryForm from "./EnquiryForm";
-import Brand from "./Brand";
+import Image from "next/image";
+import {
+  ArrowDown, ArrowRight, ArrowUpRight, CheckCircle2, FileText, IdCard,
+  Mail, MapPin, MessageCircle, Phone, ShieldCheck,
+} from "lucide-react";
 import { contact } from "@/lib/contact";
+import { services } from "@/lib/services";
+import Brand from "./Brand";
+import EnquiryForm from "./EnquiryForm";
 
-const { phone, email, whatsappLink: whatsapp } = contact;
-const generalLink = whatsapp("Hello Shiva Tech Group, I would like to know more about your services.");
-const services = [
-  { number: "01", icon: CalendarDays, title: "Aadhaar DOB limit crossed", description: "Guidance when you have reached the limit for updating your date of birth.", message: "Hello Shiva Tech Group, I need help with an Aadhaar date of birth limit crossed case." },
-  { number: "02", icon: IdCard, title: "Aadhaar name limit crossed", description: "Understand the next steps if your name update limit has been reached.", message: "Hello Shiva Tech Group, I need help with an Aadhaar name limit crossed case." },
-  { number: "03", icon: FileCheck2, title: "Same or matching BRN", description: "Help checking documents and understanding a matching BRN issue.", message: "Hello Shiva Tech Group, I need help with a same or matching BRN problem." },
-  { number: "04", icon: FileText, title: "Invalid document problem", description: "Get guidance on document-related issues and what to check next.", message: "Hello Shiva Tech Group, I need help with an invalid document problem." },
-  { number: "05", icon: Fingerprint, title: "Aadhaar suspended or deactivated", description: "Guidance on the appropriate process for a suspended or deactivated Aadhaar.", message: "Hello Shiva Tech Group, I need help with a suspended or deactivated Aadhaar." },
-  { number: "06", icon: BadgeHelp, title: "Birth certificate & BRN", description: "Assistance with questions about birth certificates and BRN.", message: "Hello Shiva Tech Group, I need help with a birth certificate or BRN." },
-  { number: "07", icon: Sparkles, title: "Government scheme applications", description: "Support with registration and online applications for government schemes.", message: "Hello Shiva Tech Group, I need help with a government scheme registration or online application." },
-  { number: "08", icon: HeartHandshake, title: "Other CSC & online services", description: "Have another online service question? Tell us what you need help with.", message: "Hello Shiva Tech Group, I need help with a CSC or online service." },
+const { phone, email, whatsappLink } = contact;
+const phoneHref = `tel:${phone.international}`;
+const enquiryHref = whatsappLink("नमस्ते, मुझे आधार या ऑनलाइन सेवा के बारे में जानकारी चाहिए।");
+const supportSteps = [
+  { title: "अपनी समस्या चुनें", detail: "सेवाओं की सूची से अपना काम चुनें।" },
+  { title: "हमें बताएं", detail: "WhatsApp पर मैसेज करें या सीधे कॉल करें।" },
+  { title: "अगला कदम समझें", detail: "जानें कि कौन से कागज़ चाहिए और आगे क्या करना है।" },
 ];
 
 export default function Home() {
   return (
-    <main>
-      <section className="hero" id="top">
-        <div className="hero-texture" aria-hidden="true" />
-        <div className="shell hero-shell">
-          <header className="nav">
-            <Brand />
-            <nav aria-label="Main navigation"><a href="#services">Services</a><a href="#how-it-works">How it works</a><a href="#contact">Contact</a></nav>
-            <a className="nav-cta" href={generalLink} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight size={15} /></a>
-          </header>
-          <div className="hero-content">
-            <div className="eyebrow hero-eyebrow"><span className="status-dot" /> HERE TO HELP, EVERY STEP OF THE WAY</div>
-            <h1>Online services,<br /><em>made simpler.</em></h1>
-            <p>Stuck with an Aadhaar or document issue? Get the guidance you need to take the next step, with a real person by your side.</p>
-            <div className="hero-actions"><a className="button button-dark" href={generalLink} target="_blank" rel="noreferrer"><MessageCircle size={19} /> Chat with us on WhatsApp <ArrowUpRight className="button-arrow" size={19} /></a><a className="button button-white" href={`tel:${phone.international}`}><Phone size={17} /> Call {phone.display}</a></div>
-            <div className="hero-note"><span><Check size={14} /> Simple guidance</span><span><Check size={14} /> One-to-one support</span><span><Check size={14} /> Just a message away</span></div>
+    <>
+      <a className="skip-link" href="#main-content">मुख्य जानकारी पर जाएँ</a>
+      <header className="site-header" id="top">
+        <div className="shell header-inner">
+          <Brand />
+          <nav aria-label="मुख्य मेनू" className="header-nav">
+            <a href="#services">सेवाएँ</a>
+            <a href="#how-it-works">मदद कैसे मिलेगी</a>
+            <a href="#contact">संपर्क</a>
+          </nav>
+          <a className="button button-yellow header-call" href={phoneHref}>
+            <Phone size={18} aria-hidden="true" /> कॉल करें
+          </a>
+        </div>
+      </header>
+
+      <main id="main-content" tabIndex={-1}>
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="shell hero-grid">
+            <div className="hero-copy">
+              <p className="service-kicker">
+                <IdCard size={21} aria-hidden="true" /> आधार और ऑनलाइन सेवाएँ
+              </p>
+              <h1 id="hero-title">आधार अपडेट में <span>दिक्कत है?</span></h1>
+              <a className="dob-link" href={whatsappLink(services[0].message)} target="_blank" rel="noreferrer">
+                <span lang="en">DOB Limit Cross</span> <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+              <p className="hero-description">
+                जन्म तारीख, नाम या दस्तावेज़ से जुड़ी समस्या बताइए। हम समझाएँगे कि आगे क्या करना है।
+              </p>
+              <div className="hero-actions">
+                <a className="button button-green" href={enquiryHref} target="_blank" rel="noreferrer">
+                  <MessageCircle size={22} aria-hidden="true" /> WhatsApp पर बात करें
+                </a>
+                <a className="button button-outline" href={phoneHref}>
+                  <Phone size={19} aria-hidden="true" /> कॉल करें <bdi>{phone.display}</bdi>
+                </a>
+              </div>
+              <a className="services-jump" href="#services">
+                सभी सेवाएँ देखें <ArrowDown size={17} aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="hero-visual">
+              <Image
+                src="/aadhaar-help-portrait.webp"
+                alt=""
+                fill
+                unoptimized
+                preload
+                className="hero-portrait"
+              />
+              <div className="portrait-label">
+                <span className="portrait-icon"><FileText size={24} aria-hidden="true" /></span>
+                <span><strong>आधार से जुड़ी मदद</strong><small>दस्तावेज़ और आवेदन की जानकारी</small></span>
+              </div>
+            </div>
           </div>
-          <a className="explore" href="#services">EXPLORE OUR SERVICES <ArrowDown size={14} /></a>
+        </section>
+
+        <div className="service-area">
+          <div className="shell service-area-inner">
+            <p><MapPin size={21} aria-hidden="true" /> सेवा क्षेत्र</p>
+            <ul aria-label="सेवा वाले जिले">
+              <li>गोरखपुर</li>
+              <li>देवरिया</li>
+              <li>कुशीनगर</li>
+              <li>महराजगंज</li>
+            </ul>
+          </div>
         </div>
-      </section>
 
-      <section className="section services-section" id="services">
-        <div className="shell">
-          <div className="section-heading"><div><div className="eyebrow"><span className="purple-dot" /> WHAT WE CAN HELP WITH</div><h2>Let’s get things<br /><em>moving again.</em></h2></div><p>From Aadhaar updates to online applications, find the help you need. Choose a service to start a conversation with us.</p></div>
-          <div className="service-grid">{services.map(({ number, icon: Icon, title, description, message }) => <a className="service-card" href={whatsapp(message)} target="_blank" rel="noreferrer" key={number} aria-label={`${title}: chat on WhatsApp`}><div className="card-top"><span className="service-icon"><Icon size={23} strokeWidth={1.5} /></span><span className="card-number">{number} / 08</span></div><div><h3>{title}</h3><p>{description}</p></div><div className="card-link">Talk to us <ArrowUpRight size={16} /></div></a>)}</div>
-          <p className="service-footnote"><CircleHelp size={16} /> Not sure which service you need? <a href={generalLink} target="_blank" rel="noreferrer">Just ask us <ArrowRight size={14} /></a></p>
+        <section className="section shell" id="services" aria-labelledby="services-title">
+          <div className="section-heading">
+            <h2 id="services-title">आपको किस काम में मदद चाहिए?</h2>
+            <p>अपनी समस्या चुनें और WhatsApp पर हमसे पूछें।</p>
+          </div>
+          <ul className="service-grid">
+            {services.map(({ id, icon: Icon, title, label, description, message, tone }) => (
+              <li key={id} className={`service-item service-${tone}`}>
+                <a className="service-card" href={whatsappLink(message)} target="_blank" rel="noreferrer">
+                  <span className="service-icon"><Icon size={24} aria-hidden="true" /></span>
+                  <h3>{title}</h3>
+                  <span className="service-label" lang="en">{label}</span>
+                  <p>{description}</p>
+                  <span className="service-action">WhatsApp पर पूछें <ArrowUpRight size={17} aria-hidden="true" /></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="steps-section" id="how-it-works" aria-labelledby="steps-title">
+          <div className="shell steps-inner">
+            <h2 id="steps-title">मदद कैसे मिलेगी?</h2>
+            <ol className="steps">
+              {supportSteps.map(({ title, detail }) => (
+                <li key={title}>
+                  <CheckCircle2 size={25} aria-hidden="true" />
+                  <div><h3>{title}</h3><p>{detail}</p></div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="section shell contact-layout" id="contact" aria-labelledby="contact-title">
+          <div className="contact-copy">
+            <h2 id="contact-title">हमसे संपर्क करें</h2>
+            <p>सूची में आपका काम नहीं दिखा? हमें कॉल करें या अपनी समस्या लिखकर भेजें।</p>
+            <ul className="contact-options">
+              <li>
+                <a href={enquiryHref} target="_blank" rel="noreferrer">
+                  <MessageCircle size={22} aria-hidden="true" /> WhatsApp पर बात करें
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a href={phoneHref}>
+                  <Phone size={21} aria-hidden="true" /> <bdi>{phone.display}</bdi>
+                  <ArrowUpRight size={18} aria-hidden="true" />
+                </a>
+              </li>
+              {email && (
+                <li>
+                  <a href={`mailto:${email}`}>
+                    <Mail size={21} aria-hidden="true" /> <bdi>{email}</bdi>
+                    <ArrowUpRight size={18} aria-hidden="true" />
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+          <div className="form-card">
+            <h3>अपना सवाल भेजें</h3>
+            <EnquiryForm />
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="shell footer-inner">
+          <Brand />
+          <p><ShieldCheck size={20} aria-hidden="true" /> हम निजी सहायता सेवा हैं। हमारा UIDAI या किसी सरकारी विभाग से संबंध नहीं है।</p>
         </div>
-      </section>
+      </footer>
 
-      <section className="section process-section" id="how-it-works"><div className="shell"><div className="process-panel"><div className="process-copy"><div className="eyebrow eyebrow-light"><span className="purple-dot" /> A LITTLE HELP GOES A LONG WAY</div><h2>One conversation.<br /><em>A clearer way forward.</em></h2><p>Online processes can feel complicated. We’re here to listen, understand your concern and help you navigate the next steps.</p><a className="button button-lavender" href={generalLink} target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight size={18} /></a></div><div className="steps"><div className="step"><span>01</span><div><h3>Choose your service</h3><p>Pick the service that best describes what you need.</p></div><ChevronRight size={19} /></div><div className="step"><span>02</span><div><h3>Tell us what’s going on</h3><p>Send us a message on WhatsApp or give us a call.</p></div><ChevronRight size={19} /></div><div className="step"><span>03</span><div><h3>Get guidance on what’s next</h3><p>We’ll help you understand the process and next steps.</p></div><ChevronRight size={19} /></div></div></div></div></section>
-
-      <section className="section contact-section" id="contact"><div className="shell contact-layout"><div className="contact-copy"><div className="eyebrow"><span className="purple-dot" /> WE’RE HERE FOR YOU</div><h2>Have a question?<br /><em>Let’s talk.</em></h2><p>Not sure where to begin? Tell us what you need help with and we’ll guide you through the next steps.</p><div className="contact-options"><a href={generalLink} target="_blank" rel="noreferrer"><span className="contact-icon"><MessageCircle size={21} /></span><span><small>MESSAGE US</small><strong>Chat on WhatsApp</strong></span><ArrowUpRight size={19} /></a><a href={`tel:${phone.international}`}><span className="contact-icon"><Phone size={20} /></span><span><small>GIVE US A CALL</small><strong>{phone.display}</strong></span><ArrowUpRight size={19} /></a>{email ? <a href={`mailto:${email}`}><span className="contact-icon"><Mail size={20} /></span><span><small>EMAIL US</small><strong>{email}</strong></span><ArrowUpRight size={19} /></a> : <div className="contact-unavailable"><span className="contact-icon"><Mail size={20} /></span><span><small>EMAIL US</small><strong>Email address coming soon</strong></span></div>}</div></div><div className="form-card"><div className="form-card-head"><div><span className="mini-label">SEND A MESSAGE</span><h3>How can we help?</h3><p>Leave us a quick message to get started.</p></div><span className="form-spark"><Sparkles size={23} /></span></div><EnquiryForm /></div></div></section>
-      <footer className="footer"><div className="shell"><div className="footer-main"><div><Brand className="footer-brand" /><p>A little guidance can make<br />a big difference.</p></div><a className="footer-chat" href={generalLink} target="_blank" rel="noreferrer">Let’s talk about<br />what you need. <ArrowUpRight size={26} /></a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Shiva Tech Group. All rights reserved.</span><span><ShieldCheck size={15} /> Independent service assistance. Not affiliated with UIDAI or any government body.</span></div></div></footer>
-      <div className="mobile-bar"><a href={`tel:${phone.international}`} aria-label="Call Shiva Tech Group"><Phone size={19} /> Call</a><a href={generalLink} target="_blank" rel="noreferrer"><MessageCircle size={19} /> Chat on WhatsApp <ArrowUpRight size={17} /></a></div>
-    </main>
+      <nav className="mobile-bar" aria-label="सीधे संपर्क करें">
+        <a className="button button-outline" href={phoneHref}><Phone size={20} aria-hidden="true" /> कॉल</a>
+        <a className="button button-green" href={enquiryHref} target="_blank" rel="noreferrer">
+          <MessageCircle size={21} aria-hidden="true" /> WhatsApp <ArrowRight size={19} aria-hidden="true" />
+        </a>
+      </nav>
+    </>
   );
 }

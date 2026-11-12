@@ -1,26 +1,25 @@
-/** A lightweight, CSS-interactive brand mark. No client-side JavaScript is needed. */
-export default function Brand({ className = "" }: { className?: string }) {
+export default function Brand({ className }: { className?: string }) {
   return (
-    <a
-      className={`group inline-flex shrink-0 items-center gap-2.5 rounded-md text-[#17142f] no-underline ${className}`}
-      href="#top"
-      aria-label="Shiva Tech Group home"
-    >
-      <svg
-        aria-hidden="true"
-        className="h-10 w-10 shrink-0 transition-transform duration-300 ease-out group-hover:-rotate-6 group-hover:scale-105 group-focus-visible:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover:transform-none motion-reduce:group-focus-visible:transform-none sm:h-11 sm:w-11"
-        viewBox="0 0 56 56"
-        fill="none"
-      >
-        <rect x="3" y="3" width="50" height="50" rx="16" fill="#211A4A" />
-        <path d="M38.3 16.7C35.7 14.1 32.3 13 28.1 13c-6.6 0-11.1 3.7-11.1 9 0 4.2 2.9 6.5 9.3 8l3.1.7c3.4.8 4.8 1.8 4.8 3.7 0 2.4-2.3 3.9-5.9 3.9-4 0-7.4-1.4-10.5-4.3" stroke="#fff" strokeWidth="4.4" strokeLinecap="round" />
-        <circle cx="39" cy="17" r="3.4" fill="#B8ACFF" />
-        <circle cx="17" cy="34.5" r="3.4" fill="#B8ACFF" />
-        <path d="M40.8 10.5v4M38.8 12.5h4" stroke="#E2DBFF" strokeWidth="1.3" strokeLinecap="round" />
+    <a className={className ? `brand ${className}` : "brand"} href="#top">
+      <svg aria-hidden="true" className="brand-mark" viewBox="0 0 56 56" fill="none">
+        <rect x="2" y="2" width="52" height="52" rx="13" fill="#092869" stroke="#FFD43B" strokeWidth="3" />
+        <path
+          d="M24 19C22.5 17.5 20.5 17 18 17C14.2 17 12 19.1 12 22C12 25.4 15 26.7 18 28C21 29.3 24 30.6 24 34C24 37 21.6 39 18 39C15.2 39 12.8 38 11 36"
+          stroke="#FFFFFF"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M44 19.5C42.3 17.8 40.4 17 38 17C32.6 17 29 21.5 29 28C29 34.5 32.6 39 38 39C41.1 39 43.6 37.6 45 35.5V29H39.5"
+          stroke="#FFD43B"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
-      <span className="flex flex-col leading-none">
-        <span className="whitespace-nowrap text-[19px] font-bold tracking-[-0.065em] sm:text-[21px]">shiva<span className="font-normal text-[#6D5CE7]">tech</span></span>
-        <span className="mt-[5px] text-[8px] font-bold tracking-[0.28em] text-[#777187]">G R O U P</span>
+      <span>
+        <span className="brand-wordmark" lang="en">ShivaTech Group</span>
+        <span className="brand-subtitle" lang="hi">आधार और ऑनलाइन सेवाएँ</span>
       </span>
     </a>
   );
