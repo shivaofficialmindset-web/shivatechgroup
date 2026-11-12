@@ -19,17 +19,17 @@ export default function EnquiryForm() {
     const message = String(data.get("message") ?? "").trim();
 
     if (!name || !phone || !message) {
-      setError("Please fill in your name, phone number and message.");
+      setError("कृपया अपना नाम, फ़ोन नंबर और संदेश भरें।");
       setStatus("error");
       return;
     }
     if (phone.replace(/\D/g, "").length < 7) {
-      setError("Please enter a valid phone number.");
+      setError("कृपया सही फ़ोन नंबर डालें।");
       setStatus("error");
       return;
     }
     if (!accessKey) {
-      setError("The contact form is not available yet. Please call or WhatsApp us instead.");
+      setError("फॉर्म अभी उपलब्ध नहीं है। कृपया हमें फ़ोन करें या WhatsApp पर संदेश भेजें।");
       setStatus("error");
       return;
     }
@@ -55,23 +55,23 @@ export default function EnquiryForm() {
       form.reset();
       setStatus("success");
     } catch {
-      setError("Sorry, we couldn’t send your message. Please try again or contact us on WhatsApp.");
+      setError("संदेश नहीं भेजा जा सका। दोबारा कोशिश करें या WhatsApp पर संपर्क करें।");
       setStatus("error");
     }
   }
 
   return (
     <form className="enquiry-form" onSubmit={sendEnquiry}>
-      <label htmlFor="name">Your name</label>
-      <input id="name" name="name" type="text" autoComplete="name" placeholder="Enter your name" required maxLength={100} />
-      <label htmlFor="phone">Phone number</label>
-      <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="Enter your phone number" required minLength={7} maxLength={25} />
-      <label htmlFor="message">How can we help?</label>
-      <textarea id="message" name="message" placeholder="Tell us a little about your query" required maxLength={1000} rows={4} />
+      <label htmlFor="name">आपका नाम</label>
+      <input id="name" name="name" type="text" autoComplete="name" placeholder="अपना नाम लिखें" required maxLength={100} />
+      <label htmlFor="phone">फ़ोन नंबर</label>
+      <input id="phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" placeholder="अपना फ़ोन नंबर लिखें" required minLength={7} maxLength={25} />
+      <label htmlFor="message">किस काम में मदद चाहिए?</label>
+      <textarea id="message" name="message" placeholder="अपनी समस्या या सवाल लिखें" required maxLength={1000} rows={4} />
       <div style={{ display: "none" }} aria-hidden="true"><input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" /></div>
-      <p className="form-note">Please do not share your Aadhaar number or sensitive documents here.</p>
-      <button type="submit" className="button button-dark form-button" disabled={status === "sending"}>{status === "sending" ? "Sending..." : "Send message"} <ArrowUpRight size={18} /></button>
-      {status === "success" && <p role="status" className="form-feedback form-success">Thank you! Your message has been sent. We’ll be in touch.</p>}
+      <p className="form-note">यहाँ अपना आधार नंबर, OTP या निजी दस्तावेज़ साझा न करें।</p>
+      <button type="submit" className="button button-dark form-button" disabled={status === "sending"}>{status === "sending" ? "संदेश भेज रहे हैं…" : "संदेश भेजें"} <ArrowUpRight size={18} /></button>
+      {status === "success" && <p role="status" className="form-feedback form-success">धन्यवाद! आपका संदेश भेज दिया गया है। हम आपसे संपर्क करेंगे।</p>}
       {status === "error" && <p role="alert" className="form-feedback form-error">{error}</p>}
     </form>
   );

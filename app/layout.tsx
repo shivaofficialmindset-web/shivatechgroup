@@ -20,25 +20,25 @@ const validGaId = gaId && /^G-[A-Z0-9]+$/i.test(gaId) ? gaId : undefined;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Aadhaar & Online Service Assistance | Shiva Tech Group",
+  title: "आधार अपडेट और ऑनलाइन सेवाओं में मदद | ShivaTech Group",
   description:
-    "Get guidance with Aadhaar update limits, document issues, birth certificates and online applications. Connect with Shiva Tech Group on WhatsApp or call us.",
+    "आधार में जन्म तारीख या नाम बदलने, दस्तावेज़, BRN और ऑनलाइन आवेदन से जुड़ी मदद के लिए ShivaTech Group से WhatsApp या फोन पर बात करें।",
   applicationName: "Shiva Tech Group",
   icons: { icon: "/icon.svg" },
   alternates: siteUrl ? { canonical: "/" } : undefined,
   openGraph: {
-    title: "Aadhaar & Online Service Assistance | Shiva Tech Group",
+    title: "आधार अपडेट और ऑनलाइन सेवाओं में मदद | ShivaTech Group",
     description:
-      "Need help with an Aadhaar or online service? Talk to the Shiva Tech Group team.",
+      "आधार, दस्तावेज़ और ऑनलाइन सेवाओं के बारे में ShivaTech Group से पूछें।",
     type: "website",
-    locale: "en_IN",
+    locale: "hi_IN",
     siteName: "Shiva Tech Group",
     ...(siteUrl ? { url: siteUrl } : {}),
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aadhaar & Online Service Assistance | Shiva Tech Group",
-    description: "Get guidance with Aadhaar, documents and online services.",
+    title: "आधार अपडेट और ऑनलाइन सेवाओं में मदद | ShivaTech Group",
+    description: "आधार, दस्तावेज़ और ऑनलाइन सेवाओं के बारे में मदद पाएँ।",
   },
   verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
     ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   };
 
   return (
-    <html lang="en">
+    <html lang="hi">
       <body>
         {children}
         <script
