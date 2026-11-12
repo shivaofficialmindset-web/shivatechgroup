@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { contact } from "@/lib/contact";
 import "./globals.css";
 
 function getSiteUrl(): URL | undefined {
@@ -49,7 +50,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Shiva Tech Group",
-    telephone: "+91-8957631598",
+    telephone: contact.phone.international,
+    ...(contact.email ? { email: contact.email } : {}),
     ...(siteUrl ? { url: siteUrl.toString() } : {}),
   };
 
